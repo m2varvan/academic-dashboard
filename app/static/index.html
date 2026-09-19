@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Dashboard — Fall 2026</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">AD</div>
+        <div>
+          <div class="brand-title">Academic Dashboard</div>
+          <div class="brand-sub" id="term-label">Fall 2026</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-view="overview"><span>Overview</span></button>
+        <button class="nav-item" data-view="calendar"><span>Calendar</span></button>
+        <button class="nav-item" data-view="deadlines"><span>Deadlines</span></button>
+        <button class="nav-item" data-view="courses"><span>Courses</span></button>
+      </nav>
+
+      <div class="sidebar-actions">
+        <button id="add-event-btn" class="btn btn-primary btn-block">+ Add event</button>
+        <button id="rescan-btn" class="btn btn-ghost btn-block">Re-scan outlines</button>
+        <div id="scan-status" class="scan-status"></div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-title">Event types</div>
+        <div class="legend-grid" id="legend"></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div id="page-title" class="page-title">Overview</div>
+        <div class="filters" id="filters">
+          <select id="f-course" class="filter"><option value="">All courses</option></select>
+          <select id="f-type" class="filter"><option value="">All types</option></select>
+          <select id="f-status" class="filter">
+            <option value="">Any status</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="tentative">Tentative</option>
+            <option value="tbd">TBD / no date</option>
+            <option value="conflict">Conflict</option>
+          </select>
+          <input id="f-from" type="date" class="filter" title="From date" />
+          <input id="f-to" type="date" class="filter" title="To date" />
+          <button id="f-clear" class="btn btn-ghost btn-sm">Clear</button>
+        </div>
+      </header>
+
+      <section id="view" class="view"></section>
+    </main>
+  </div>
+
+  <!-- Event detail drawer -->
+  <div id="drawer" class="drawer hidden">
+    <div class="drawer-overlay" data-close-drawer></div>
+    <div class="drawer-panel">
+      <button class="drawer-close" data-close-drawer>&times;</button>
+      <div id="drawer-content"></div>
+    </div>
+  </div>
+
+  <!-- Add manual event modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-overlay" data-close-modal></div>
+    <div class="modal-panel">
+      <h3>Add your own event</h3>
+      <p class="muted small">Manual events are tagged separately and are never overwritten by a re-scan.</p>
+      <form id="manual-form">
+        <label>Title<input name="title" required placeholder="Study for MSE 332 midterm" /></label>
+        <label>Course
+          <select name="course_code" id="m-course"><option value="">(none / general)</option></select>
+        </label>
+        <label>Type
+          <select name="type">
+            <option value="other">Other</option>
+            <option value="assignment">Assignment</option>
+            <option value="quiz">Quiz</option>
+            <option value="midterm">Midterm</option>
+            <option value="exam">Exam</option>
+            <option value="project">Project</option>
+            <option value="milestone">Milestone</option>
+            <option value="presentation">Presentation</option>
+            <option value="report">Report</option>
+          </select>
+        </label>
+        <div class="form-row">
+          <label>Date<input name="date" type="date" /></label>
+          <label>Time<input name="time" type="time" /></label>
+        </div>
+        <label>Location<input name="location" placeholder="optional" /></label>
+        <label>Notes<textarea name="description" rows="2" placeholder="optional"></textarea></label>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Add event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
