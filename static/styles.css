@@ -1,0 +1,20 @@
+body { font-family: Arial, sans-serif; margin: 0; background: #f4f6fb; color: #1f2430; }
+header { background: #1f3a8a; color: #fff; padding: 16px; }
+main { padding: 16px; display: grid; gap: 12px; }
+.card { background: #fff; border-radius: 10px; padding: 14px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.toolbar, .filters, .calendar-controls, form { display: flex; gap: 8px; flex-wrap: wrap; }
+input, select, button { padding: 6px 8px; }
+button { cursor: pointer; }
+#deadlinesTable { width: 100%; border-collapse: collapse; }
+#deadlinesTable th, #deadlinesTable td { border-bottom: 1px solid #e3e7ef; padding: 6px; text-align: left; }
+.overdue { color: #b91c1c; font-weight: bold; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.day-cell { min-height: 90px; border: 1px solid #e3e7ef; padding: 6px; border-radius: 6px; background: #fafcff; }
+.event-pill { margin-top: 4px; padding: 2px 4px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+.type-assignment { background: #dbeafe; }
+.type-midterm,.type-exam { background: #fee2e2; }
+.type-project,.type-presentation { background: #fef3c7; }
+.type-lecture,.type-lab,.type-tutorial { background: #dcfce7; }
+.status-tentative { border: 1px dashed #f59e0b; }
+.status-tbd { border: 1px dashed #6b7280; }
+pre { white-space: pre-wrap; background: #f8fafc; padding: 10px; border-radius: 8px; }

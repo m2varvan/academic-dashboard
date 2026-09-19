@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Academic Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Academic Planning Dashboard</h1>
+      <div class="toolbar">
+        <input id="outlineDir" type="text" placeholder="/absolute/path/to/course-outlines" />
+        <button id="scanBtn">Re-scan outlines</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="card" id="reportSection">
+        <h2>Outline Inspection Report</h2>
+        <pre id="report"></pre>
+      </section>
+
+      <section class="card" id="summarySection">
+        <h2>Today / Upcoming Summary</h2>
+        <div id="summary"></div>
+      </section>
+
+      <section class="card">
+        <h2>Filters</h2>
+        <div class="filters">
+          <select id="courseFilter"></select>
+          <select id="typeFilter">
+            <option value="">All types</option>
+            <option>lecture</option><option>lab</option><option>tutorial</option>
+            <option>assignment</option><option>quiz</option><option>midterm</option>
+            <option>exam</option><option>project</option><option>presentation</option>
+            <option>report</option><option>milestone</option><option>deliverable</option>
+          </select>
+          <select id="statusFilter">
+            <option value="">All statuses</option>
+            <option value="confirmed">confirmed</option>
+            <option value="tentative">tentative</option>
+            <option value="tbd">tbd</option>
+          </select>
+          <input id="startFilter" type="date" />
+          <input id="endFilter" type="date" />
+          <button id="applyFilterBtn">Apply</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Calendar</h2>
+        <div class="calendar-controls">
+          <button data-view="month">Month</button>
+          <button data-view="week">Week</button>
+          <button data-view="day">Day</button>
+        </div>
+        <div id="calendar"></div>
+      </section>
+
+      <section class="card">
+        <h2>Upcoming Deadlines</h2>
+        <table id="deadlinesTable">
+          <thead>
+            <tr><th>Course</th><th>Name</th><th>Type</th><th>Due</th><th>Days left</th><th>Weight</th><th>Status</th><th>Source</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Courses</h2>
+        <select id="courseDetailSelect"></select>
+        <div id="courseDetails"></div>
+      </section>
+
+      <section class="card">
+        <h2>Add Manual Event</h2>
+        <form id="manualForm">
+          <input name="title" placeholder="Title" required />
+          <input name="event_type" placeholder="Type (e.g. study)" required />
+          <input name="date_iso" type="date" />
+          <input name="time_text" placeholder="Time" />
+          <input name="status" placeholder="confirmed/tentative/tbd" value="confirmed" required />
+          <input name="description" placeholder="Description" />
+          <button type="submit">Add</button>
+        </form>
+      </section>
+
+      <dialog id="eventDialog">
+        <div id="eventDialogBody"></div>
+        <button onclick="document.getElementById('eventDialog').close()">Close</button>
+      </dialog>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
